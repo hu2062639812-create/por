@@ -1,8 +1,12 @@
 import React from 'react';
-import { ExternalLink, Github, Code } from 'lucide-react';
+import { ExternalLink, Github, Gamepad2 } from 'lucide-react';
 import { PROJECTS } from '../constants';
 
-const Projects: React.FC = () => {
+interface ProjectsProps {
+  onPlayGame: () => void;
+}
+
+const Projects: React.FC<ProjectsProps> = ({ onPlayGame }) => {
   return (
     <section id="projects" className="py-20 bg-slate-900/50">
       <div className="container mx-auto px-6">
@@ -29,9 +33,19 @@ const Projects: React.FC = () => {
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-dark/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4 backdrop-blur-sm">
-                  <a href={project.demoUrl} className="p-3 bg-white text-dark rounded-full hover:bg-primary hover:text-white transition-colors" title="View Demo">
-                    <ExternalLink size={20} />
-                  </a>
+                  {project.id === 99 ? (
+                    <button 
+                      onClick={(e) => { e.preventDefault(); onPlayGame(); }}
+                      className="p-3 bg-primary text-white rounded-full hover:bg-indigo-600 transition-colors animate-bounce" 
+                      title="Play Demo"
+                    >
+                      <Gamepad2 size={24} />
+                    </button>
+                  ) : (
+                    <a href={project.demoUrl} className="p-3 bg-white text-dark rounded-full hover:bg-primary hover:text-white transition-colors" title="View Demo">
+                      <ExternalLink size={20} />
+                    </a>
+                  )}
                   <a href={project.repoUrl} className="p-3 bg-dark text-white border border-slate-600 rounded-full hover:bg-white hover:text-dark transition-colors" title="View Code">
                     <Github size={20} />
                   </a>

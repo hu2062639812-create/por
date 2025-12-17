@@ -13,6 +13,15 @@ export const PERSONAL_INFO = {
 
 export const PROJECTS: Project[] = [
   {
+    id: 99, // Special ID for the game
+    title: "像素传说 (Pixel Legends)",
+    description: "一个完全基于 HTML5 Canvas 和 React 开发的 2D 平台动作游戏。包含 3 个独特角色、3 种地形环境（草地/雪地/沙漠）以及独特的“攻击重置二段跳”机制。支持多难度选择，展示了高性能动画渲染与游戏逻辑实现能力。",
+    technologies: ["React", "HTML5 Canvas", "Game Physics", "Pixel Art"],
+    imageUrl: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2070&auto=format&fit=crop", 
+    demoUrl: "#game-demo", // Special anchor to trigger game
+    repoUrl: "#"
+  },
+  {
     id: 1,
     title: "轻享盒子 (Light Enjoy Box)",
     description: "一款聚焦健康饮食的微信小程序，作为随身食谱小百科。网罗低脂轻卡、营养均衡的创意食谱，提供食材营养解析与膳食搭配指南。UI 采用清新绿色调，设计了从“快手早餐”到“控糖甜品”的精细分类，助用户轻松解锁健康美味。",
