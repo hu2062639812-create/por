@@ -1,9 +1,21 @@
 import { GoogleGenAI, Chat, GenerateContentResponse } from "@google/genai";
 import { AI_SYSTEM_INSTRUCTION } from '../constants';
 
-// Initialize Gemini API client
-// Ideally, handle the case where API_KEY is missing gracefully in the UI
-const apiKey = process.env.API_KEY || ''; 
+// Safely retrieve API key to prevent "process is not defined" errors in browser runtime
+const getApiKey = () => {
+  try {
+    // Check if process is defined (Node/Build env)
+    if (typeof process !== 'undefined' && process.env) {
+      return process.env.API_KEY || '';
+    }
+    // Fallback for some bundlers (Vite often uses import.meta.env, but we stick to process per instruction)
+    return ''; 
+  } catch (e) {
+    return '';
+  }
+};
+
+const apiKey = getApiKey();
 const ai = new GoogleGenAI({ apiKey });
 
 let chatSession: Chat | null = null;
@@ -11,7 +23,6 @@ let chatSession: Chat | null = null;
 export const initializeChat = (): Chat => {
   if (!apiKey) {
     console.warn("API Key is missing. Chat functionality will not work.");
-    // Return a dummy chat object or handle error appropriately in UI
   }
   
   if (!chatSession) {
