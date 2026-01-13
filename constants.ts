@@ -1,3 +1,4 @@
+
 import { Project, Experience, Skill } from './types';
 
 export const PERSONAL_INFO = {
@@ -13,20 +14,29 @@ export const PERSONAL_INFO = {
 
 export const PROJECTS: Project[] = [
   {
-    id: 99, // Special ID for the game
+    id: 100, // Special ID for Poetry Master
+    title: "诗词达人 (Poetry Master)",
+    description: "一个模仿多邻国模式的古诗词学习平台。采用关卡式进度设计，通过趣味交互（如诗词填空、拖拽排序）引导用户在“玩游戏”的过程中潜移默化地背诵古诗词。包含完整的任务系统、商店激励和成就勋章墙。",
+    technologies: ["React", "Tailwind CSS", "Framer Motion", "Game Logic"],
+    imageUrl: "https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?q=80&w=2038&auto=format&fit=crop", 
+    demoUrl: "#poetry-demo", 
+    repoUrl: "#"
+  },
+  {
+    id: 99,
     title: "像素传说 (Pixel Legends)",
-    description: "一个完全基于 HTML5 Canvas 和 React 开发的 2D 平台动作游戏。包含 3 个独特角色、3 种地形环境（草地/雪地/沙漠）以及独特的“攻击重置二段跳”机制。支持多难度选择，展示了高性能动画渲染与游戏逻辑实现能力。",
+    description: "一个完全基于 HTML5 Canvas 和 React 开发的 2D 平台动作游戏。包含 3 个独特角色、3 种地形环境以及独特的“攻击重置二段跳”机制。展示了高性能动画渲染与游戏逻辑实现能力。",
     technologies: ["React", "HTML5 Canvas", "Game Physics", "Pixel Art"],
     imageUrl: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2070&auto=format&fit=crop", 
-    demoUrl: "#game-demo", // Special anchor to trigger game
+    demoUrl: "#game-demo",
     repoUrl: "#"
   },
   {
     id: 1,
     title: "轻享盒子 (Light Enjoy Box)",
-    description: "一款聚焦健康饮食的微信小程序，作为随身食谱小百科。网罗低脂轻卡、营养均衡的创意食谱，提供食材营养解析与膳食搭配指南。UI 采用清新绿色调，设计了从“快手早餐”到“控糖甜品”的精细分类，助用户轻松解锁健康美味。",
+    description: "一款聚焦健康饮食的微信小程序，作为随身食谱小百科。提供食材营养解析与膳食搭配指南。UI 采用清新绿色调，助用户轻松解锁健康美味。",
     technologies: ["WeChat Mini Program", "Taro", "React", "UI/UX Design"],
-    imageUrl: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=2053&auto=format&fit=crop", // Healthy food concept image
+    imageUrl: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=2053&auto=format&fit=crop",
     demoUrl: "#",
     repoUrl: "#"
   },
@@ -36,15 +46,6 @@ export const PROJECTS: Project[] = [
     description: "一个基于 Next.js 和 GraphQL 的高性能电商平台，支持数万并发用户。集成了即时搜索、购物车同步和复杂的支付流程。",
     technologies: ["React", "Next.js", "TypeScript", "Tailwind CSS", "GraphQL"],
     imageUrl: "https://picsum.photos/800/600?random=1",
-    demoUrl: "#",
-    repoUrl: "#"
-  },
-  {
-    id: 3,
-    title: "AI Analytics Dashboard",
-    description: "为企业客户提供的数据可视化仪表盘，利用 D3.js 和 Recharts 展示实时 AI 模型训练数据和预测结果。",
-    technologies: ["React", "D3.js", "Recharts", "WebSockets", "Node.js"],
-    imageUrl: "https://picsum.photos/800/600?random=2",
     demoUrl: "#",
     repoUrl: "#"
   }
@@ -96,24 +97,18 @@ export const SKILLS: Skill[] = [
   }
 ];
 
-// System instruction for the Gemini chatbot
 export const AI_SYSTEM_INSTRUCTION = `
 你是一个名为“胡仁的AI助手”的智能助手。你的任务是基于以下关于胡仁的简历信息，回答访问者关于他的技能、经验和项目的问题。
-请使用专业、热情且简洁的中文回答。不要编造信息。如果问题超出了简历范围，请礼貌地建议用户通过邮件联系胡仁。
+请特别关注他的“诗词达人”项目，这是一个模仿多邻国模式的学习平台，展示了他对交互设计、教育科技和游戏化逻辑的深度理解。
 
 简历信息：
 姓名：${PERSONAL_INFO.name}
 职位：${PERSONAL_INFO.title}
 简介：${PERSONAL_INFO.bio}
-邮箱：${PERSONAL_INFO.email}
-地点：${PERSONAL_INFO.location}
 
-主要技能：
+项目重点：
+- 诗词达人: 游戏化学习平台，核心是 SVG 进度路径算法和拖拽排序交互。
+- 像素传说: Canvas 游戏，展示了对底层渲染和物理引擎的掌握。
+
 ${SKILLS.map(s => `${s.category}: ${s.items.join(', ')}`).join('\n')}
-
-工作经历：
-${EXPERIENCE.map(e => `- ${e.period} | ${e.company} | ${e.role}: ${e.description}`).join('\n')}
-
-项目经验：
-${PROJECTS.map(p => `- ${p.title}: ${p.description} (技术栈: ${p.technologies.join(', ')})`).join('\n')}
 `;

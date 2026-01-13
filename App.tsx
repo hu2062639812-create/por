@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -6,6 +7,7 @@ import Experience from './components/Experience';
 import Projects from './components/Projects';
 import ChatWidget from './components/ChatWidget';
 import GameDemo from './components/GameDemo';
+import PoetryDemo from './components/PoetryDemo';
 import { Mail, Github, Linkedin } from 'lucide-react';
 import { PERSONAL_INFO } from './constants';
 
@@ -41,6 +43,7 @@ const Contact: React.FC = () => (
 
 const App: React.FC = () => {
   const [showGame, setShowGame] = useState(false);
+  const [showPoetry, setShowPoetry] = useState(false);
 
   return (
     <div className="bg-dark min-h-screen text-slate-200 selection:bg-primary selection:text-white">
@@ -48,12 +51,19 @@ const App: React.FC = () => {
       <Hero />
       <About />
       <Experience />
-      <Projects onPlayGame={() => setShowGame(true)} />
+      <Projects 
+        onPlayGame={() => setShowGame(true)} 
+        onOpenPoetry={() => setShowPoetry(true)}
+      />
       <Contact />
       <ChatWidget />
       
       {showGame && (
         <GameDemo onClose={() => setShowGame(false)} />
+      )}
+
+      {showPoetry && (
+        <PoetryDemo onClose={() => setShowPoetry(false)} />
       )}
     </div>
   );

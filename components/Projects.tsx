@@ -1,12 +1,14 @@
+
 import React from 'react';
-import { ExternalLink, Github, Gamepad2 } from 'lucide-react';
+import { ExternalLink, Github, Gamepad2, GraduationCap } from 'lucide-react';
 import { PROJECTS } from '../constants';
 
 interface ProjectsProps {
   onPlayGame: () => void;
+  onOpenPoetry: () => void;
 }
 
-const Projects: React.FC<ProjectsProps> = ({ onPlayGame }) => {
+const Projects: React.FC<ProjectsProps> = ({ onPlayGame, onOpenPoetry }) => {
   return (
     <section id="projects" className="py-20 bg-slate-900/50">
       <div className="container mx-auto px-6">
@@ -41,6 +43,14 @@ const Projects: React.FC<ProjectsProps> = ({ onPlayGame }) => {
                     >
                       <Gamepad2 size={24} />
                     </button>
+                  ) : project.id === 100 ? (
+                    <button 
+                      onClick={(e) => { e.preventDefault(); onOpenPoetry(); }}
+                      className="p-3 bg-blue-500 text-white rounded-full hover:bg-blue-600 transition-colors animate-pulse" 
+                      title="Learn Poetry"
+                    >
+                      <GraduationCap size={24} />
+                    </button>
                   ) : (
                     <a href={project.demoUrl} className="p-3 bg-white text-dark rounded-full hover:bg-primary hover:text-white transition-colors" title="View Demo">
                       <ExternalLink size={20} />
@@ -67,12 +77,6 @@ const Projects: React.FC<ProjectsProps> = ({ onPlayGame }) => {
               </div>
             </div>
           ))}
-        </div>
-        
-        <div className="mt-12 text-center md:hidden">
-            <a href="#" className="inline-flex items-center gap-2 text-primary hover:text-white transition-colors">
-            查看 Github 更多项目 <ArrowRightSmall />
-          </a>
         </div>
       </div>
     </section>
